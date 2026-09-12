@@ -1,166 +1,231 @@
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Random Giraffe</title>
+    <title>Giraffe Surprise</title>
 
-<style>
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
 
-body {
-    margin: 0;
-    overflow: hidden;
-    height: 100vh;
-    background: linear-gradient(#69c7f0, #dff7ff);
-    font-family: Arial, sans-serif;
-}
+        body {
+            background: linear-gradient(#6ecbf5, #dff7ff);
+        }
 
-/* Normal message */
-#message {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-size: 22px;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 100;
-}
+        /* Top message */
+        #message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 25px;
+            background: white;
+            border-radius: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-/* Giraffe */
-#giraffe {
-    position: absolute;
-    display: none;
-    width: 150px;
-    height: 250px;
-    animation: pop 0.35s ease-out;
-    z-index: 50;
-}
+        /* Giraffe */
+        #giraffe {
+            position: absolute;
+            width: 150px;
+            height: 260px;
+            display: none;
+            z-index: 5;
+            animation: pop 0.35s ease-out;
+        }
 
-/* BODY */
-.body {
-    position: absolute;
-    width: 90px;
-    height: 110px;
-    background: #e8a83e;
-    border-radius: 45%;
-    left: 30px;
-    top: 105px;
-    border: 3px solid #7a4b16;
-}
+        /* Giraffe body */
+        .body {
+            position: absolute;
+            width: 90px;
+            height: 105px;
+            left: 30px;
+            top: 115px;
+            background: #e6a33a;
+            border: 4px solid #704214;
+            border-radius: 45%;
+        }
 
-/* NECK */
-.neck {
-    position: absolute;
-    width: 38px;
-    height: 125px;
-    background: #e8a83e;
-    border: 3px solid #7a4b16;
-    border-radius: 20px;
-    left: 78px;
-    top: 10px;
-}
+        /* Neck */
+        .neck {
+            position: absolute;
+            width: 40px;
+            height: 135px;
+            left: 77px;
+            top: 15px;
+            background: #e6a33a;
+            border: 4px solid #704214;
+            border-radius: 25px;
+        }
 
-/* HEAD */
-.head {
-    position: absolute;
-    width: 70px;
-    height: 55px;
-    background: #e8a83e;
-    border: 3px solid #7a4b16;
-    border-radius: 45%;
-    left: 62px;
-    top: 0;
-}
+        /* Head */
+        .head {
+            position: absolute;
+            width: 75px;
+            height: 58px;
+            left: 60px;
+            top: 0;
+            background: #e6a33a;
+            border: 4px solid #704214;
+            border-radius: 45%;
+        }
 
-/* EYES */
-.eye {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: black;
-    border-radius: 50%;
-    top: 18px;
-}
+        /* Eyes */
+        .eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 20px;
+            background: black;
+            border-radius: 50%;
+            z-index: 3;
+        }
 
-.eye1 {
-    left: 75px;
-}
+        .eye1 {
+            left: 75px;
+        }
 
-.eye2 {
-    left: 105px;
-}
+        .eye2 {
+            left: 105px;
+        }
 
-/* NOSE */
-.nose {
-    position: absolute;
-    width: 18px;
-    height: 10px;
-    background: #704018;
-    border-radius: 50%;
-    left: 113px;
-    top: 38px;
-}
+        /* Nose */
+        .nose {
+            position: absolute;
+            width: 20px;
+            height: 12px;
+            left: 115px;
+            top: 39px;
+            background: #704214;
+            border-radius: 50%;
+            z-index: 3;
+        }
 
-/* EARS */
-.ear {
-    position: absolute;
-    width: 25px;
-    height: 18px;
-    background: #e8a83e;
-    border: 3px solid #7a4b16;
-    border-radius: 50%;
-    top: 0;
-}
+        /* Ears */
+        .ear {
+            position: absolute;
+            width: 28px;
+            height: 18px;
+            top: 0;
+            background: #e6a33a;
+            border: 4px solid #704214;
+            border-radius: 50%;
+            z-index: 1;
+        }
 
-.ear1 {
-    left: 55px;
-    transform: rotate(-30deg);
-}
+        .ear1 {
+            left: 48px;
+            transform: rotate(-30deg);
+        }
 
-.ear2 {
-    left: 120px;
-    transform: rotate(30deg);
-}
+        .ear2 {
+            left: 120px;
+            transform: rotate(30deg);
+        }
 
-/* HORNS */
-.horn {
-    position: absolute;
-    width: 8px;
-    height: 18px;
-    background: #7a4b16;
-    border-radius: 5px;
-    top: -15px;
-}
+        /* Horns */
+        .horn {
+            position: absolute;
+            width: 9px;
+            height: 22px;
+            top: -18px;
+            background: #704214;
+            border-radius: 10px;
+            z-index: 4;
+        }
 
-.horn1 {
-    left: 78px;
-}
+        .horn1 {
+            left: 78px;
+        }
 
-.horn2 {
-    left: 110px;
-}
+        .horn2 {
+            left: 108px;
+        }
 
-/* LEGS */
-.leg {
-    position: absolute;
-    width: 15px;
-    height: 65px;
-    background: #e8a83e;
-    border: 3px solid #7a4b16;
-    border-radius: 10px;
-    top: 190px;
-}
+        /* Legs */
+        .leg {
+            position: absolute;
+            width: 17px;
+            height: 65px;
+            top: 200px;
+            background: #e6a33a;
+            border: 4px solid #704214;
+            border-radius: 10px;
+        }
 
-.leg1 {
-    left: 45px;
-}
+        .leg1 {
+            left: 45px;
+        }
 
-.leg2 {
-    left: 90px
+        .leg2 {
+            left: 90px;
+        }
+
+        /* Giraffe spots */
+        .spot {
+            position: absolute;
+            background: #8b541b;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .spot1 {
+            width: 20px;
+            height: 25px;
+            left: 45px;
+            top: 135px;
+        }
+
+        .spot2 {
+            width: 18px;
+            height: 20px;
+            left: 85px;
+            top: 155px;
+        }
+
+        .spot3 {
+            width: 22px;
+            height: 18px;
+            left: 55px;
+            top: 180px;
+        }
+
+        .spot4 {
+            width: 15px;
+            height: 18px;
+            left: 95px;
+            top: 125px;
+        }
+
+        /* Pop animation */
+        @keyframes pop {
+            0% {
+                transform: scale(0) rotate(-15deg);
+            }
+
+            70% {
+                transform: scale(1.15) rotate(5deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* Fake virus screen */
+        #virusScreen {
+            display: none;
+            position: fixed;
+            inset: 0;
 ```
